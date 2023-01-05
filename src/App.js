@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Login from "./components/auth/login";
+import AllJobPage from "./components/allJobPage";
+import BaseLayout from "./baseLayout";
+import HomePage from "./components/homepage";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <BaseLayout>
+          <HomePage />
+        </BaseLayout>
+      </Route>
+
+      <Route path="/login">
+        <BaseLayout>
+          <Login />
+        </BaseLayout>
+      </Route>
+
+      <Route path="/all">
+        <BaseLayout>
+          <AllJobPage />
+        </BaseLayout>
+      </Route>
+
+      <Redirect to="/" />
+    </Switch>
   );
-}
+};
 
 export default App;
